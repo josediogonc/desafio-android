@@ -15,6 +15,10 @@ fun DependencyHandler.debugImplementation(depName: String) {
     add("debugImplementation", depName)
 }
 
+fun DependencyHandler.releaseImplementation(depName: String) {
+    add("releaseImplementation", depName)
+}
+
 fun DependencyHandler.api(depName: String) {
     add("api", depName)
 }
@@ -25,6 +29,10 @@ fun DependencyHandler.kapt(depName: String) {
 
 fun DependencyHandler.testImplementation(depName: String) {
     add("testImplementation", depName)
+}
+
+fun DependencyHandler.androidTestUtil(depName: String) {
+    add("androidTestUtil", depName)
 }
 
 fun DependencyHandler.androidTestImplementation(depName: String) {

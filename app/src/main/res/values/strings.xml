@@ -3,4 +3,5 @@
     <string name="title">Contatos</string>
     <string name="error">Ocorreu um erro. Tente novamente.</string>
 
+    <string name="remote_repository_connection_error_message">Houve um erro ao recuperar alista contatos online. Recuperando localmente...</string>
 </resources>

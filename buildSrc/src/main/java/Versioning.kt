@@ -8,6 +8,13 @@ object Versioning {
         const val APP_VERSION_NAME = "0.1.0"
     }
 
+    const val INSTALL_REFERRER_VERSION = "1.1"
+    const val GLIDE_VERSION = "4.11.0"
+    const val JSON_VERSION = "20180130"
+    const val ANDROIDX_ARCH_CORE_TESTING = "2.1.0"
+    const val ANDROIDX_TEST_EXT_JUNIT_VERSION = "1.1.2"
+    const val TRUTH_VERSION = "1.1"
+    const val BIOMETRIC_VERSION = "1.0.0"
     const val ANDROID_GRADLE_PLUGIN_VERSION = "4.1.0"
 
     const val KOTLIN_VERSION = "1.3.61"

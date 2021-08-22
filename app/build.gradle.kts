@@ -1,24 +1,37 @@
 import config.Libs.androidx
+import config.Libs.biometric
+import config.Libs.circleImageView
 import config.Libs.coroutines
+import config.Libs.debugTools
+import config.Libs.glide
+import config.Libs.installReferrer
 import config.Libs.koin
 import config.Libs.lifecycle
+import config.Libs.materialDesign
 import config.Libs.moshi
 import config.Libs.navigation
+import config.Libs.picasso
 import config.Libs.retrofit
 import config.Libs.room
+import config.Libs.spinKit
+import config.Libs.kotlin
 import config.TestLibs.androidxTest
 import config.TestLibs.coroutinesTest
 import config.TestLibs.espresso
+import config.TestLibs.json
+import config.TestLibs.junit4
 import config.TestLibs.koinTest
 import config.TestLibs.mockWebServer
 import config.TestLibs.mockk
 import config.TestLibs.navigationTest
+import config.TestLibs.testOrchestrator
+import config.TestLibs.truth
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("jacoco")
     id("kotlin-android")
@@ -76,8 +89,8 @@ android {
         }
     }
 
-    androidExtensions {
-        isExperimental = true
+    buildFeatures {
+        viewBinding = true
     }
 
     packagingOptions {
@@ -109,31 +122,19 @@ tasks {
 }
 
 dependencies {
-    api(config.Libs.PICASSO)
-    api(config.Libs.MATERIAL_DESIGN)
-    implementation(config.Libs.BIOMETRIC)
-
-    implementation ("com.github.bumptech.glide:glide:4.11.0")
-    kapt ("com.github.bumptech.glide:compiler:4.11.0")
-
-    implementation(config.Libs.PICASSO)
-    implementation(config.Libs.CIRCLE_IMAGEVIEW)
-    implementation(config.Libs.ANDROID_SPIN_KIT)
-    implementation(config.Libs.INSTALL_REFERRES)
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    releaseImplementation(config.Libs.CHUCK_RELEASE_NO_OP)
-
-    debugImplementation(config.Libs.DEBUG_DB)
-    debugImplementation(config.Libs.CHUCK_DEBUG)
-
-    testImplementation(config.TestLibs.JUNIT4)
-    testImplementation(config.TestLibs.JSON)
-    testImplementation(config.TestLibs.TRUTH)
-
-    androidTestUtil(config.TestLibs.ANDROIDX_TEST_ORCHESTRATOR)
-    androidTestImplementation(config.TestLibs.TRUTH)
-
+    kotlin()
+    materialDesign()
+    biometric()
+    picasso()
+    glide()
+    circleImageView()
+    spinKit()
+    installReferrer()
+    debugTools()
+    junit4()
+    json()
+    truth()
+    testOrchestrator()
     androidx()
     lifecycle()
     room()
@@ -149,4 +150,8 @@ dependencies {
     koinTest()
     coroutinesTest()
     mockWebServer()
+
+    testImplementation ("com.github.marcinOz:TestCoroutineRule:1.0.1")
+    testImplementation ("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
 }
