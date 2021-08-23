@@ -11,6 +11,8 @@ import com.picpay.desafio.android.data.repository.remote.service.PicPayService
 import com.picpay.desafio.android.data.repository.remote.retrofit.OkHttpClientFactory
 import com.picpay.desafio.android.data.repository.remote.retrofit.RetrofitClient
 import com.picpay.desafio.android.domain.features.GetContactsFeature
+import com.picpay.desafio.android.utils.ConnectionChecker
+import okhttp3.Connection
 import org.koin.dsl.module
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,6 +40,7 @@ private val networkModule = module {
     factory<Interceptor> { HttpLoggingInterceptor() }
     single { OkHttpClientFactory.build(get(), androidContext()) }
     single { RetrofitClient.build(BuildConfig.BASE_URL, get(), get()) }
+    single { ConnectionChecker(androidContext())}
 }
 
 private val remoteRepositoryModule = module {

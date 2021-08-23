@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import com.picpay.desafio.android.data.repository.remote.model.error.RequestError
 import com.picpay.desafio.android.data.repository.remote.model.resource.Resource
+import com.picpay.desafio.android.utils.ConnectionChecker
 import com.squareup.moshi.JsonEncodingException
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -12,9 +13,11 @@ import java.io.IOException
 import java.net.UnknownHostException
 
 class RetrofitResponse<T>(
-    private val context: Context?,
+    context: Context,
     private val request: suspend () -> Response<T>
 ) : ApiResponse<T> {
+
+    private val connectionChecker = ConnectionChecker(context)
 
     override suspend fun result(): Resource<T> {
         return try {
@@ -52,14 +55,10 @@ class RetrofitResponse<T>(
     }
 
     private fun verifyInternetConnection(): RequestError {
-        return if(context != null) {
-            if (hasInternetConnection(context)) {
-                genericError
-            } else {
-                connectionError
-            }
-        } else {
+        return if (connectionChecker.hasInternetConnection()) {
             genericError
+        } else {
+            connectionError
         }
     }
 
@@ -69,28 +68,15 @@ class RetrofitResponse<T>(
             get() = RequestError(
                 code = 401,
                 title = "Erro de conexão",
-                message = "Ops, não conseguimos conexão com a internet. Confira os status da sua conexão."
+                message = "Não foi possível conectar com o servidor. Verifique sua conexão com a internet."
             )
 
         val genericError : RequestError
             get() = RequestError(
                 code = 400,
-                title = "ops!",
-                message = "something get wrong. check your internet connection and try again :)",
+                title = "Erro de conexão",
+                message = "Não foi possível conectar com o servidor. ",
             )
 
-        private fun hasInternetConnection(context: Context): Boolean {
-            val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                val network = connectivityManager.activeNetwork
-                val capabilities = connectivityManager.getNetworkCapabilities(network)
-                capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(
-                    NetworkCapabilities.TRANSPORT_CELLULAR
-                ))
-            } else {
-                true
-            }
-        }
     }
 }

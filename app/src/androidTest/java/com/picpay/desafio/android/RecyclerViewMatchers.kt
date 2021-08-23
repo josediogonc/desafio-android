@@ -36,4 +36,17 @@ object RecyclerViewMatchers {
             )
         )
     }
+
+    fun isNotEmpty() : Matcher<View> {
+        return object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
+            override fun describeTo(description: Description?) {
+                description?.appendText("RecyclerView is not Empty")
+            }
+
+            override fun matchesSafely(item: RecyclerView?): Boolean {
+                return item?.adapter?.itemCount!! > 0
+            }
+        }
+    }
+
 }

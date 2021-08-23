@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath(config.BuildPlugins.ANDROID_PLUGIN)
         classpath(config.BuildPlugins.KOTLIN_PLUGIN)
-        classpath(config.BuildPlugins.NAVIGATION_SAFE_ARGS_PLUGIN)
+        //classpath(config.BuildPlugins.NAVIGATION_SAFE_ARGS_PLUGIN)
         classpath(config.BuildPlugins.JACOCO_PLUGIN)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }

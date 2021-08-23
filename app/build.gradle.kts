@@ -32,7 +32,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
-    id("androidx.navigation.safeargs.kotlin")
     id("jacoco")
     id("kotlin-android")
 }

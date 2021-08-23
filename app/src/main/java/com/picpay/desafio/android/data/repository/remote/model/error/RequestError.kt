@@ -2,7 +2,7 @@ package com.picpay.desafio.android.data.repository.remote.model.error
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class RequestError(
