@@ -18,7 +18,7 @@ class MainApplication : Application(), LifecycleObserver {
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules( allKoinModules)
+            modules(allKoinModules)
         }
     }
 

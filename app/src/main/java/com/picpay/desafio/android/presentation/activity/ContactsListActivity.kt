@@ -28,10 +28,7 @@ class ContactsListActivity : AppCompatActivity() {
         binding = ActivityContactsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupObservers()
-        loadContacts()
     }
-
-    private fun loadContacts() = viewModel.loadContacts()
 
     private fun setupObservers() {
         contactListObserver()

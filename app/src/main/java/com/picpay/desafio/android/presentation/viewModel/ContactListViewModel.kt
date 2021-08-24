@@ -8,6 +8,10 @@ import kotlinx.coroutines.launch
 
 class ContactListViewModel(private val getContactsFeature : GetContactsFeature) : BaseViewModel() {
 
+    init {
+        loadContacts()
+    }
+
     val contactList = MutableLiveData<List<User>>()
 
     fun loadContacts() {
